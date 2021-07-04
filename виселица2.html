@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Угадай слово</title>
+    <script type="text/javascript">
+    let input, ok, word, casilla;
+    window.onload = function() {
+        input = document.getElementById('input');
+        ok = document.getElementById('submit');
+        word = document.getElementById('word');
+        input.focus();
+        ok.onclick = function() {
+            let mysplit = input.value.toUpperCase().split('');
+            let mynums = [];
+            for (let k = 0; k < mysplit.length; k++) {
+                mynums.push(k);
+            }
+            
+            //!lksdf 
+            // mysplit.forEach(letra => {
+            //     casilla = document.createElement('button');
+            //     casilla.classList.add('casilla');
+            //     casilla.style.color = '#c0c0c0';
+            //     casilla.style.fontSize = '15pt';
+
+            //     if (letra === ' ') {
+            //         casilla.style.opacity = '.0';
+            //     }
+            //     word.appendChild(casilla); 
+            //     for (let i = 0; i < mysplit.length; i++) {
+            //         casilla.onclick = function() {
+            //             this.innerHTML = letra; 
+            //         } 
+            //     }
+            // });
+
+            for (let k = 0; k < mysplit.length; k++) {
+                newSpan = document.createElement('div');
+                newSpan.width = '30px';
+                
+                casilla = document.createElement('button');
+                let b = document.createElement('b');
+                newSpan.appendChild(casilla);
+                newSpan.appendChild(b);
+                casilla.classList.add('casilla');
+                newSpan.classList.add('new-span');
+                
+                b.style.color = '#c0c0c0';
+                b.style.marginTop = '50';
+                b.innerHTML = k + 1;
+
+                if (mysplit[k] === ' ') {
+                    casilla.style.opacity = '.0';
+                }
+                
+                if (mysplit[k] === ',') {
+                    casilla.innerHTML = ',';
+                    casilla.style.fontSize = '15pt';
+                }
+                if (mysplit[k] === '.') {
+                    casilla.innerHTML = '.';
+                    casilla.style.fontSize = '15pt';
+                }
+                if (mysplit[k] === '?') {
+                    casilla.innerHTML = '?';
+                    casilla.style.fontSize = '15pt';
+                }
+                if (mysplit[k] === '!') {
+                    casilla.innerHTML = '!';
+                    casilla.style.fontSize = '15pt';
+                }
+                if (mysplit[k] === ':') {
+                    casilla.innerHTML = ':';
+                    casilla.style.fontSize = '15pt';
+                }
+                if (mysplit[k] === '-') {
+                    casilla.innerHTML = '-';
+                    casilla.style.fontSize = '15pt';
+                }
+                if (mysplit[k] === '¿') {
+                    casilla.innerHTML = '¿';
+                    casilla.style.fontSize = '15pt';
+                }
+                if (mysplit[k] === '¡') {
+                    casilla.innerHTML = '¡';
+                    casilla.style.fontSize = '15pt';
+                }
+                
+                word.appendChild(newSpan); 
+                // for (let i = 0; i < mysplit.length; i++) {
+                    casilla.onclick = function() {
+                        this.style.paddingTop = '0px';
+                        this.style.fontSize = '15pt'
+                        this.style.marginBottom = '30';
+                        this.style.color = 'white';
+                        this.innerHTML = mysplit[k]; 
+                    } 
+                // }
+            }
+            input.parentElement.removeChild(input);
+            ok.parentElement.removeChild(ok);
+            
+        }
+    }
+    </script>
+    <style type="text/css">
+    .casilla{
+        width: 30px;
+        height: 40px;
+        margin: 2px;
+        color: white;
+        background-color: #1240ab;
+    }
+    /* .casilla:active{
+        transform: translateY(25px);
+    } */
+    .new-span{
+        float: left;
+        width: 30px;
+        height: 40px;
+        margin-bottom: 20px;
+        margin-left: 3px;
+    }
+    #input{
+        color: white;
+    }
+    #submit{
+        padding-bottom: -50px;
+    }
+    b{
+        width: 30px;
+        text-align: center;
+        font-size: 10pt;
+    }
+    #word{
+        width: 80%;
+        margin: auto;
+        text-align: center;
+    }
+</style>
+
+</head>
+<body>
+    <input id="input" type="text"><button id="submit">OK</button><br>
+    <div id="word"></div>
+    
+</body>
+</html>
